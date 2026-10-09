@@ -26,7 +26,7 @@ struct Estudiante {
 
 //Tabla con los ids, nombres y carreras de los estudiantes
 Estudiante estudiantes[MAX] = {
-    {1132698, "Chirstian Javier Acosta Urena", "IDS"},
+    {1132698, "Christian Javier Acosta Urena", "IDS"},
     {1131078, "Axel Martin Almonte Leon", "ICS"},
     {1129398, "Nathaniel Alvarez Bello", "IDS"},
     {1131528, "Rafael Jesus Arguelles Garcia", "SIS"},
