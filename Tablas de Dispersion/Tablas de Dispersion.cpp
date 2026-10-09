@@ -7,7 +7,8 @@ Grupo 1:
 - ⁠José Pinales - 1133255
 - Christian Acosta - 1132698
 
-Hacer una tabla de dispercion usando una funcion hash para definir las keys en donde iran los estudiantes.
+Hacer una tabla de dispercion usando una funcion hash para
+definir las keys en donde iran los estudiantes.
 */
 
 #include <iostream>
@@ -97,6 +98,7 @@ void generarKeys()
 }
 
 // Desplegar la tabla hash
+
 void mostrarTabla()
 {
     if (!keysGeneradas)
@@ -105,39 +107,60 @@ void mostrarTabla()
         return;
     }
 
-    cout << "\n====== Estudiantes ======\n";
+    cout << "\n========================== TABLA HASH ==========================\n";
+    cout << "ID         Nombre                                      Carrera   Key\n";
+    cout << "-----------------------------------------------------------------------\n";
 
     for (int i = 0; i < MAX; i++)
     {
-        cout << "\nKey: " << i << endl;
-        cout << "ID: " << tablaHash[i].id << endl;
-        cout << "Nombre: " << tablaHash[i].nombre << endl;
-        cout << "Carrera: " << tablaHash[i].carrera << endl;
+        cout << tablaHash[i].id << "   ";
+
+        cout << tablaHash[i].nombre;
+
+        // Completar con espacios hasta alcanzar 42 caracteres
+        int espacios = 42 - tablaHash[i].nombre.length();
+
+        for (int j = 0; j < espacios; j++)
+        {
+            cout << " ";
+        }
+
+        cout << "   " << tablaHash[i].carrera;
+        cout << "       " << i << endl;
     }
 
-    cout << endl;
+    cout << "-----------------------------------------------------------------------\n\n";
 }
 
 // Buscar estudiante por ID
+
 void buscarEstudiante(int id)
 {
-    if (!keysGeneradas)
-    {
-        cout << "\nPrimero debe generar las keys.\n\n";
-        return;
-    }
-
     int key = funcionHash(id);
 
     for (int i = 0; i < MAX; i++)
     {
         if (tablaHash[key].id == id)
         {
-            cout << "\n====== Estudiante encontrado ======\n";
-            cout << "ID: " << tablaHash[key].id << endl;
-            cout << "Nombre: " << tablaHash[key].nombre << endl;
-            cout << "Carrera: " << tablaHash[key].carrera << endl;
-            cout << "Key: " << key << "\n\n";
+            cout << "\n===================== ESTUDIANTE ENCONTRADO =====================\n";
+            cout << "ID         Nombre                                      Carrera   Key\n";
+            cout << "-------------------------------------------------------------------\n";
+
+            cout << tablaHash[key].id << "   ";
+            cout << tablaHash[key].nombre;
+
+            int espacios = 42 - tablaHash[key].nombre.length();
+
+            for (int j = 0; j < espacios; j++)
+            {
+                cout << " ";
+            }
+
+            cout << "   " << tablaHash[key].carrera;
+            cout << "       " << key << endl;
+
+            cout << "-------------------------------------------------------------------\n\n";
+
             return;
         }
 
@@ -181,9 +204,9 @@ void leerEntero(string mensaje, int& pDato)
     } while (error);
 }
 
-bool idValido(int id) 
+bool idValido(int id)
 {
-    if (id > 0) 
+    if (id > 0)
     {
         return true;    // el ID es correcto
     }
@@ -217,9 +240,15 @@ int main()
 
         case 3:
         {
-            int id;
-            leerEntero("\nIngrese el ID: ", id);
-            buscarEstudiante(id);
+            if (!keysGeneradas)
+            {
+                cout << "\nPrimero debe generar las keys.\n\n";
+            }
+            else {
+                int id;
+                leerEntero("\nIngrese el ID: ", id);
+                buscarEstudiante(id);
+            }
             break;
         }
 
